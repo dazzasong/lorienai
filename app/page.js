@@ -57,7 +57,7 @@ export default function Home() {
           </Button>
         </Stack>
         {chat.length === 0 &&
-          <Box>
+          <Box width={300}>
             <Typography color="success" fontWeight='bold' mb={1}>── Suggestions ──</Typography>
             <ButtonGroup color="success" orientation="vertical" fullWidth>
               <Button onClick={() => setInput('Write an essay')} sx={{ justifyContent: 'start', textTransform: 'none' }}>Write an essay</Button>
