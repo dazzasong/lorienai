@@ -39,14 +39,12 @@ export default function Home() {
             Send
           </Button>
         </Stack>
-        <Box>
-          <Typography color="success" fontWeight='bold' mb={1}>── Suggestions ──</Typography>
-          <ButtonGroup color="success" orientation="vertical" >
-            <Button onClick={() => setInput('Write an essay')} sx={{ justifyContent: 'start', textTransform: 'none' }}>Write an essay</Button>
-            <Button onClick={() => setInput('Help me study for a test')} sx={{ justifyContent: 'start', textTransform: 'none' }}>Help me study for a test</Button>
-            <Button onClick={() => setInput('Play a game with me')} sx={{ justifyContent: 'start', textTransform: 'none' }}>Play a game with me</Button>
-          </ButtonGroup>
-        </Box>
+        <Typography color="success" fontWeight='bold' mb={1}>── Suggestions ──</Typography>
+        <ButtonGroup color="success" orientation="vertical" fullWidth>
+          <Button onClick={() => setInput('Write an essay')} sx={{ justifyContent: 'start', textTransform: 'none' }}>Write an essay</Button>
+          <Button onClick={() => setInput('Help me study for a test')} sx={{ justifyContent: 'start', textTransform: 'none' }}>Help me study for a test</Button>
+          <Button onClick={() => setInput('Play a game with me')} sx={{ justifyContent: 'start', textTransform: 'none' }}>Play a game with me</Button>
+        </ButtonGroup>
       </form>
     </Stack>
   );
