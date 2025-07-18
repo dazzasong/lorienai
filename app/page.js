@@ -41,7 +41,7 @@ export default function Home() {
 
   return (
     <Stack justifyContent='center' alignItems='center' height='100vh' sx={{ userSelect: 'none' }}>
-      <Typography position='absolute' top={0} left={0}>LorienAI v1.0</Typography>
+      <Typography position='absolute' top={0} left={0}>LorienAI v1.0.0</Typography>
       {chat.length === 0 && <Typography fontSize={30} fontWeight='bold'>What can I help you with?</Typography>}
       <Stack
         width={350}
