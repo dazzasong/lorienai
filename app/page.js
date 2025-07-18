@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Box, Button, ButtonGroup, IconButton, InputBase, Stack, Typography } from "@mui/material";
 import { Send } from "@mui/icons-material";
 
@@ -8,6 +8,12 @@ export default function Home() {
   const [input, setInput] = useState('');
   const [chat, setChat] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+  }, [chat]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,7 +42,15 @@ export default function Home() {
     <Stack justifyContent='center' alignItems='center' height='100vh' sx={{ userSelect: 'none' }}>
       <Typography position='absolute' top={0} left={0}>LorienAI v1.0</Typography>
       {chat.length === 0 && <Typography fontSize={30} fontWeight='bold'>What can I help you with?</Typography>}
-      <Stack width={350} maxHeight={400} position='relative' overflow='auto' right={10} sx={{ userSelect: 'text' }}>
+      <Stack
+        width={350}
+        maxHeight={400}
+        position='relative'
+        overflow='auto'
+        right={10}
+        ref={scrollRef}
+        sx={{ userSelect: 'text' }}
+      >
         {chat.map((msg, index) => (
           <Typography key={index} color={msg.role === 'user' ? 'white' : 'lightgreen'}>
             <b>{msg.role === 'user' ? 'You' : 'LorienAI'}:</b> {msg.content}
