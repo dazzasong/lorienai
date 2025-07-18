@@ -1,24 +1,35 @@
 'use client';
 
-import { Box, Button, ButtonGroup, InputBase, Stack, Typography } from "@mui/material";
 import { useState } from "react";
+import { Box, Button, ButtonGroup, IconButton, InputBase, Stack, Typography } from "@mui/material";
+import { Send } from "@mui/icons-material";
 
 export default function Home() {
   const [input, setInput] = useState('');
   const [chat, setChat] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    
     let newChat = [...chat, { role: 'user', content: input }];
-    const response = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: input }),
-    });
-    const data = await response.json();
-    newChat.push({ role: "assistant", content: data.reply });
-    setChat(newChat);
-    setInput('');
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: newChat }),
+      });
+      const data = await res.json();
+      newChat.push({ role: "assistant", content: data.reply });
+      setChat(newChat);
+      setInput('');
+    } catch (err) {
+      console.error("Error fetching chat:", err);
+    } finally{
+      setLoading(false);
+    }
   };
 
   return (
@@ -47,14 +58,7 @@ export default function Home() {
               borderRadius: 2
             }}
           />
-          <Button
-            variant="contained"
-            type="submit"
-            disabled={!input}
-            sx={{ bgcolor: 'grey' }}
-          >
-            Send
-          </Button>
+          <IconButton color="inherit" type="submit" disabled={!input}>{loading ? <div className="spinner" /> : <Send />}</IconButton>
         </Stack>
         {chat.length === 0 &&
           <Box width={300}>

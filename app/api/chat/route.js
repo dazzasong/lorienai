@@ -5,14 +5,14 @@ const openai = new OpenAI({
 });
 
 export async function POST(req) {
-  const { message } = await req.json();
+  const { messages } = await req.json();
 
   try {
     const chatCompletion = await openai.chat.completions.create({
-      model: "gpt-4.1",
+      model: "gpt-4.1-nano",
       messages: [
-        { role: "system", content: "You are a helpful assistant." },
-        { role: "user", content: message }
+        { role: "system", content: "You are a helpful assistant. You are called LorienAI." },
+        ...messages
       ]
     });
 
