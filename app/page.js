@@ -57,7 +57,7 @@ export default function Home() {
             <Typography color={msg.role === 'user' ? 'white' : 'lightgreen'} fontWeight="bold" component="span">
               {msg.role === 'user' ? 'You' : 'LorienAI'}:
             </Typography>
-            <Box component="span" sx={{ ml: 1 }}>
+            <Box component="span" sx={{ ml: 1, color: 'lightgreen'}}>
               <ReactMarkdown
                 components={{
                   p: ({node, ...props}) => <span {...props} />,
