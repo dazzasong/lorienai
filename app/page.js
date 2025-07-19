@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Box, Button, ButtonGroup, IconButton, InputBase, Stack, Typography } from "@mui/material";
 import { Send } from "@mui/icons-material";
+import ReactMarkdown from 'react-markdown';
 
 export default function Home() {
   const [input, setInput] = useState('');
@@ -40,7 +41,7 @@ export default function Home() {
 
   return (
     <Stack justifyContent='center' alignItems='center' height='100vh' sx={{ userSelect: 'none' }}>
-      <Typography position='absolute' top={0} left={0}>LorienAI v1.0</Typography>
+      <Typography position='absolute' top={0} left={0}>LorienAI v1.0.0</Typography>
       {chat.length === 0 && <Typography fontSize={30} fontWeight='bold'>What can I help you with?</Typography>}
       <Stack
         width={350}
@@ -52,9 +53,20 @@ export default function Home() {
         sx={{ userSelect: 'text' }}
       >
         {chat.map((msg, index) => (
-          <Typography key={index} color={msg.role === 'user' ? 'white' : 'lightgreen'}>
-            <b>{msg.role === 'user' ? 'You' : 'LorienAI'}:</b> {msg.content}
-          </Typography>
+          <Box key={index} mb={1}>
+            <Typography color={msg.role === 'user' ? 'white' : 'lightgreen'} fontWeight="bold" component="span">
+              {msg.role === 'user' ? 'You' : 'LorienAI'}:
+            </Typography>
+            <Box component="span" sx={{ ml: 1, color: 'lightgreen'}}>
+              <ReactMarkdown
+                components={{
+                  p: ({node, ...props}) => <span {...props} />,
+                }}
+              >
+                {msg.content}
+              </ReactMarkdown>
+            </Box>
+          </Box>
         ))}
       </Stack>
       <form onSubmit={handleSubmit}>
