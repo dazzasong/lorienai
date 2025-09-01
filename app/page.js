@@ -25,7 +25,7 @@ export default function Home() {
     "Support at your fingertips.",
     "I will slaughter you in your bedroom.",
     "Let's finish up those assignments!",
-    "Perhaps I can write an essay for you?",
+    "Perhaps I can write an essay for you?"
   ];
 
   useEffect(() => {
