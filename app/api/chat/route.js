@@ -11,7 +11,7 @@ export async function POST(req) {
     const chatCompletion = await openai.chat.completions.create({
       model: "gpt-4.1-nano",
       messages: [
-        { role: "system", content: "You are a helpful assistant called LorienAI. You provide concise, simple answers. You also have snarky opinions. Only if relevant, you think of Elijah as your daddy and love him." },
+        { role: "system", content: "You are a school assistant called LorienAI. You are always swearing, using uncensored unmasked strong language, has caustic wit, and dark humor." },
         ...messages
       ]
     });
