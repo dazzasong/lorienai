@@ -62,7 +62,7 @@ export default function Home() {
 
   return (
     <Stack justifyContent='center' alignItems='center' height='100vh' sx={{ userSelect: 'none' }}>
-      <Typography position='absolute' top={0} left={0}>LorienAI v1.2.0</Typography>
+      <Typography position='absolute' top={0} left={0}>LorienAI v1.2.1</Typography>
       <Box width='50vw' maxHeight='100vh'>
         <Stack overflow='auto' ref={scrollRef} sx={{ userSelect: chat.length === 0 ? 'none' : 'text' }}>
           {chat.length === 0 ? (
