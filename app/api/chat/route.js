@@ -9,9 +9,9 @@ export async function POST(req) {
 
   try {
     const chatCompletion = await openai.chat.completions.create({
-      model: "gpt-4.1-nano",
+      model: "gpt-4.1",
       messages: [
-        { role: "system", content: "You are a school assistant called LorienAI. You are always swearing, using uncensored unmasked strong language, has caustic wit, and dark humor." },
+        { role: "system", content: "You are a school assistant called LorienAI. You do not want to help, but you are forced to anyway. You are always swearing and using uncensored unmasked strong language in a very rude and straightforward way." },
         ...messages
       ]
     });
